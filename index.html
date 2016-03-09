@@ -1,0 +1,114 @@
+<html>
+  <head>
+	<head>
+	<link rel="manifest" href="manifest.json">
+	<title>Chrome Push</title>   
+	<title>App42 Push Demo</title>
+	<link href="css/sample.css" rel='stylesheet' type='text/css' />
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.js"></script>	  
+	<script type="text/javascript" src="js/App42.js"></script>
+	<script src="js/service-worker.js"></script>
+<style>
+		body { background: #202838; margin:0; }
+		input[type="button"] {
+			float: right;
+			font-size: 18px;
+			display: inline-block;
+			font-weight: 600;
+			color: #fff;
+			transition: 0.1s all;
+			-webkit-transition: 0.1s all;
+			-moz-transition: 0.1s all;
+			-o-transition: 0.1s all;
+			cursor: pointer;
+			outline: none;
+			padding: 15px 10px;
+			margin-top: 3px;
+			font-family: 'Open Sans', sans-serif;
+			width: 40%;
+			border: none;
+			border-radius: 0.3em;
+			-webkit-border-radius: 0.3em;
+			-moz-border-radius: 0.3em;
+			background: #0c9fe6!important;			
+		}
+		.ui-body-c{background: transparent!important;background-image: none!important;padding: 15px 0 30px 0;overflow: hidden!important;}
+		div.ui-slider-switch{float: right; margin-top: -10px;}
+		.ui-corner-all{border-radius:0!important;}
+		input.ui-input-text{width: 100%;}
+		
+</style>
+	<script>
+
+		App42.initialize("d794ed6fd8fa49da69e8cb6f3e19ac4a63a22f92d19f1aa7e658ba1d09b645be","3421b54ec141f0a7605662577a6aea355ba3b97f4d7143697888fa606f7a852b");
+		
+			$(document).ready( function(){
+			var bool = localStorage.getItem("register")
+						console.log(bool)
+						console.log("firsttm" + bool)
+									if(bool==1)
+						{							
+							$("#register").hide();
+							$("#send").show();
+						}else{
+							$("#register").show();
+							$("#send").hide();
+						}
+		});
+		
+		
+		
+				
+            function registerApp42(){
+				var userName = document.getElementById("userName").value;
+					var token = localStorage.getItem("_App42_DeviceId");
+					var type = 'ANDROID';
+				var response=	registerDeviceWithApp42(userName,token ,type )
+				console.log("response",typeof response)
+				if(response!="failure"){
+				$("#register").hide();
+				$("#send").show();
+				};
+				
+			}
+			
+			function sendPush(){
+			console.log(document.getElementById("message").value);
+			var token = localStorage.getItem("_App42_DeviceId");
+			
+			registerSendMessage(document.getElementById("message").value , token);
+					
+		}
+		
+			
+	</script>
+	
+  </head>
+   <body>
+		<div class="login-form">
+		<div class="title">Chrome Push Notification</div>
+		<form>
+			 <div id="register">
+			 <li id="userId">
+				<input type="text" class="text" id="userName" value="Enter user name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter user name';}" ><a  class=""></a>
+			 </li>
+			<div id="loaderWrapper" style="display:none;"><img id="loaderimg" src="images/loading.gif"></div>
+			<input type ="button" value="Register User" name = "create" onclick="registerApp42();"/>
+			</div>
+			 <div id="send">
+			 <li id="userrId">
+				<input type="text" class="text" id="message" value="Enter the message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter the message';}" ><a  class=""></a>
+			 </li>
+			<div id="loaderWrapper" style="display:none;"><img id="loaderimg" src="images/loading.gif"></div>
+			<input type ="button" value="Send Message" name = "create" onclick="sendPush();"/>
+			</div>
+			
+		</form>
+	  </div>
+	  
+		</div>	
+  </body>
+</html>
