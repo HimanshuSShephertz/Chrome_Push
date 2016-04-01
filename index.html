@@ -64,7 +64,7 @@
             function registerApp42(){
 				var userName = document.getElementById("userName").value;
 					var token = localStorage.getItem("_App42_DeviceId");
-					var type = 'ANDROID';
+					var type = 'CHROME';
 				var response=	registerDeviceWithApp42(userName,token ,type )
 				console.log("response",typeof response)
 				if(response!="failure"){
