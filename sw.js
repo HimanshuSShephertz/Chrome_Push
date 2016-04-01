@@ -24,7 +24,7 @@ self.addEventListener('push', function(event) {
         var idD = regID.substring(regID.indexOf("d/")+1);
        	regID =  idD.substring(idD.indexOf("/")+1);
         console.log(regID)
-		var URL = FETCH_ENDPOINT +regID+ "/ANDROID"+"?apiKey=d794ed6fd8fa49da69e8cb6f3e19ac4a63a22f92d19f1aa7e658ba1d09b645be&";
+		var URL = FETCH_ENDPOINT +regID+ "/CHROME"+"?apiKey=d794ed6fd8fa49da69e8cb6f3e19ac4a63a22f92d19f1aa7e658ba1d09b645be&";
 		console.log(URL);
         return fetch(URL).then(function(response) {
 				
